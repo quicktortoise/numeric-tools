@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Utilidad para devolver las coincidencias y discrepancias de la comparación de dos listados numéricos.">
+	<meta name="author" content="Daniel Medrano Huerta">
+	<title>Búsqueda - Utilidades numéricas</title>
+	<link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+	<link rel="stylesheet" href="../styles/main.css">
+	<link rel="stylesheet" href="../styles/panels.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Quicksand:wght@400;700&display=swap">
+	<link rel="icon" type="image/png" href="../favicon.png">
+	<style>
+		section { width: 832px; }
+	</style>
+</head>
+<body>
+<header>
+	<div class="header">
+		<h1>Búsqueda</h1>
+		<button class="menu-toggle">🌮 Menú</button>
+		<nav class="mobile-hidden-menu">
+			<ul>
+				<li><a href="../">Inicio</a></li>
+				<li><a href="../ranges">Rangos</a></li>
+				<li><a href="../search" class="active-menu">Búsqueda</a></li>
+				<li><a href="../duplicates">Duplicados</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<main>
+	<div class="top-panel">
+		<div class="panel">
+			<div class="grouped-panel">
+				<div class="panel half-panel">
+					<label for="txt-search-list" class="list-caption">Qué buscar:</label>
+					<textarea id="txt-search-list" rows="10"></textarea>
+					<div class="action-panel">
+						<button name="btn-copy" data-control-id="txt-search-list">Copiar</button>
+						<button name="btn-clear" data-control-id="txt-search-list">Limpiar</button>
+					</div>
+				</div>
+				<div class="panel half-panel">
+					<label for="txt-pool-list" class="list-caption">En dónde buscar:</label>
+					<textarea id="txt-pool-list" rows="10"></textarea>
+					<div class="action-panel">
+						<button name="btn-copy" data-control-id="txt-pool-list">Copiar</button>
+						<button name="btn-clear" data-control-id="txt-pool-list">Limpiar</button>
+					</div>
+				</div>
+			</div>
+			<div class="action-panel">
+				<button id="btn-search" class="primary-action full-size-button">Buscar</button>
+			</div>
+		</div>
+		<div class="grouped-panel">
+			<div class="panel half-panel">
+				<label for="txt-results-list" class="list-caption">Encontrado:</label>
+				<textarea id="txt-results-list" rows="10" readonly></textarea>
+				<div class="action-panel">
+					<button name="btn-copy" data-control-id="txt-results-list">Copiar</button>
+					<button name="btn-clear" data-control-id="txt-results-list">Limpiar</button>
+				</div>
+			</div>
+			<div class="panel half-panel">
+				<label for="txt-noresults-list" class="list-caption">No encontrado:</label>
+				<textarea id="txt-noresults-list" rows="10" readonly></textarea>
+				<div class="action-panel">
+					<button name="btn-copy" data-control-id="txt-noresults-list">Copiar</button>
+					<button name="btn-clear" data-control-id="txt-noresults-list">Limpiar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<footer>
+	<p>Hecho con ❤️ por <a href="https://github.com/mdanieltg/" target="_blank">mdanieltg</a>.</p>
+</footer>
+
+<script src="../scripts/common.js"></script>
+<script src="../scripts/menu.js"></script>
+<script src="../scripts/search.js"></script>
+</body>
+</html>

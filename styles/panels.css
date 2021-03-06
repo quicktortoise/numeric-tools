@@ -1,0 +1,76 @@
+textarea {
+	height: 100vh;
+	max-height: 22em;
+	font-family: monospace;
+	font-size: 0.75em;
+}
+
+/* Lobotomized Owl as described in https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/ */
+.top-panel > * + * {
+	margin-top: 1em;
+}
+
+.option-panel {
+	margin-bottom: 1em;
+}
+
+.panel {
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+.grouped-panel {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+.half-panel {
+	width: 49%;
+}
+
+.list-caption {
+	font-weight: bold;
+}
+
+.action-panel {
+	display: flex;
+	margin-top: 0.5em;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+.full-size-button {
+	flex-grow: 1;
+}
+
+@media (min-width: 576px) {
+	.divided-panel {
+		justify-content: space-around;
+	}
+
+	.divided-panel .panel {
+		flex-grow: initial;
+		flex-basis: 200px;
+	}
+}
+
+@media (min-width: 768px) {
+	.top-panel {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+	}
+
+	.top-panel > * + * {
+		margin-top: 0;
+	}
+
+	.top-panel > * {
+		flex-basis: 49%;
+	}
+
+	.option-panel > label:hover {
+		cursor: pointer;
+	}
+}
