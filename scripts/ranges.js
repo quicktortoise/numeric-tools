@@ -1,15 +1,18 @@
+import { inputToIntArray, inputToRangeArray } from './common.js';
+import { mergeSort } from './algos.js';
+
 (function () {
-  const txtFoldedList = document.getElementById("txt-folded-list"),
-    txtUnfoldedList = document.getElementById("txt-unfolded-list");
+  const txtFoldedList = document.getElementById("txt-folded-list");
+  const txtUnfoldedList = document.getElementById("txt-unfolded-list");
 
   // btn-unfold click listener
   document.getElementById("btn-unfold").addEventListener("click", () => {
-    const input = inputToRangeArray(txtFoldedList.value);
+    const rangeArray = inputToRangeArray(txtFoldedList.value);
 
-    let unfoldedValues = unfold(input);
-    unfoldedValues = removeDuplicates(unfoldedValues.sort((a, b) => a - b));
+    let unfoldedValues = unfold(rangeArray);
+    unfoldedValues = mergeSort(unfoldedValues);
 
-    txtUnfoldedList.value = arrayAsList(unfoldedValues);
+    txtUnfoldedList.value = unfoldedValues.join("\n");
   });
 
   // btn-fold click listener
@@ -17,12 +20,12 @@
     const dontContractPair = document.getElementById("chk-contract-two-value").checked;
 
     const valuesToFold = inputToIntArray(txtUnfoldedList.value);
-    const foldedArray = fold(valuesToFold, dontContractPair);
+    const ranges = fold(valuesToFold, dontContractPair);
 
-    txtFoldedList.value = arrayAsList(foldedArray);
+    txtFoldedList.value = ranges.join("\n");
   });
 
-  function fold(values, dontContractTwo) {
+  const fold = (values, dontContractTwo) => {
     const foldedArray = [];
 
     for (let i = 0; i < values.length; i++) {
@@ -59,33 +62,29 @@
     return foldedArray;
   }
 
-  function unfold(foldedValues) {
-    const unfoldedValues = [];
+  const unfold = foldedValues => {
+    const unfoldedValues = new Set();
 
-    for (let fold of foldedValues) {
-      if (fold) {
-        for (let range of expandRange(fold)) {
-          unfoldedValues.push(range);
-        }
+    for (let range of foldedValues) {
+      for (let item of expandRange(range)) {
+        unfoldedValues.add(item);
       }
     }
 
-    return unfoldedValues;
+    return [...unfoldedValues];
   }
 
-  function expandRange(range) {
-    const splitRange = range.split("-"),
-      expandedRange = [];
+  const expandRange = range => {
+    const splitRange = range.split("-");
 
-    if (splitRange.length === 2) {
-      const firstNumber = parseInt(splitRange[0]) || 0;
-      const lastNumber = parseInt(splitRange[1]) || firstNumber;
+    if (splitRange.length === 1) return [parseInt(splitRange[0])];
 
-      for (let i = firstNumber; i <= lastNumber; i++) {
-        expandedRange.push(i);
-      }
-    } else if (splitRange.length === 1 && splitRange[0]) {
-      return splitRange;
+    const expandedRange = [];
+    const firstNumber = parseInt(splitRange[0]) || 0;
+    const lastNumber = parseInt(splitRange[1]) || firstNumber;
+
+    for (let i = firstNumber; i <= lastNumber; i++) {
+      expandedRange.push(i);
     }
 
     return expandedRange;

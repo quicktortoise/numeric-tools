@@ -1,34 +1,36 @@
+import { binarySearch, mergeSort } from './algos.js';
+import { inputToIntArray } from './common.js';
+
 (function () {
-  const txtPoolList = document.getElementById("txt-pool-list"),
-    txtSearchList = document.getElementById("txt-search-list"),
-    txtResultsList = document.getElementById("txt-results-list"),
-    txtNoResultsList = document.getElementById("txt-noresults-list");
+  const txtPoolList = document.getElementById("txt-pool-list");
+  const txtSearchList = document.getElementById("txt-search-list");
+  const txtResultsList = document.getElementById("txt-results-list");
+  const txtNoResultsList = document.getElementById("txt-noresults-list");
 
   // btn-search click listener
   document.getElementById("btn-search").addEventListener("click", () => {
-    const searchPool = inputToIntArray(txtPoolList.value),
-      searchItems = inputToIntArray(txtSearchList.value);
+    const devicePool = inputToIntArray(txtPoolList.value);
+    const searchTargets = inputToIntArray(txtSearchList.value);
 
-    const findings = search(searchPool, searchItems);
+    const findings = search(mergeSort(devicePool), searchTargets);
+    const { found, notFound } = findings;
 
-    txtResultsList.value = arrayAsList(findings.found);
-    txtNoResultsList.value = arrayAsList(findings.notFound);
+    txtResultsList.value = found.join("\n");
+    txtNoResultsList.value = notFound.join("\n");
   });
 
-  function search(searchPool, searchItems) {
-    const findings = {
-      found: [],
-      notFound: []
-    };
+  const search = (devicePool, searchTargets) => {
+    const found = [];
+    const notFound = [];
 
-    for (const item of searchItems) {
-      if (searchPool.includes(item)) {
-        findings.found.push(item);
+    for (const target of searchTargets) {
+      if (binarySearch(devicePool, 0, devicePool.length, target)) {
+        found.push(target);
       } else {
-        findings.notFound.push(item);
+        notFound.push(target);
       }
     }
 
-    return findings;
+    return { found, notFound };
   }
 })();

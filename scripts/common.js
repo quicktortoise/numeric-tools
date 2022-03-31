@@ -8,7 +8,7 @@
     });
   });
 
-// Limpiar textarea
+  // Limpiar textarea
   document.getElementsByName("btn-clear").forEach(item => {
     item.addEventListener("click", () => {
       const id = item.getAttribute("data-control-id"),
@@ -34,63 +34,34 @@
  * Funciones de utilería
  */
 
-function inputToIntArray(inputText) {
-  const inputArray = inputText.split("\n"),
-    pattern = /^\s*\d+\s*$/,
-    array = [];
+const inputToIntArray = inputText => {
+  const pattern = /^\s*(\d+)\s*$/gm;
+  const intSet = new Set();
 
-  for (let item of inputArray) {
-    if (pattern.test(item)) {
-      const int = parseInt(item);
+  let match = pattern.exec(inputText);
+  while (match != null) {
+    intSet.add(parseInt(match[1]));
 
-      if (!array.includes(int)) {
-        array.push(int);
-      }
-    }
+    match = pattern.exec(inputText);
   }
 
-  return array.sort((a, b) => a - b);
+  return [...intSet];
 }
 
-function inputToRangeArray(inputText) {
-  const inputArray = inputText.split("\n"),
-    pattern = /^\s*\d+(\s*-\s*\d+)?\s*$/,
-    exclusionPattern = /[^\d\-]/g,
-    array = [];
+const inputToRangeArray = inputText => {
+  const pattern = /^\s*\d+(\s*-\s*\d+)?\s*$/gm;
+  const exclusionPattern = /[^\d\-]/g;
+  const set = new Set();
 
-  for (let item of inputArray) {
-    if (pattern.test(item)) {
-      const value = item.replace(exclusionPattern, "");
+  let match = pattern.exec(inputText);
+  while (match != null) {
+    const value = match[0].replace(exclusionPattern, "");
+    set.add(value);
 
-      if (!array.includes(value)) {
-        array.push(value);
-      }
-    }
+    match = pattern.exec(inputText);
   }
 
-  return array;
+  return [...set];
 }
 
-function arrayAsList(array) {
-  let stringList = "";
-
-  for (const item of array) {
-    stringList += item + "\n";
-  }
-
-  return stringList;
-}
-
-function removeDuplicates(array) {
-  const purgedArray = [];
-
-  for (let item of array) {
-    if (item) {
-      if (!purgedArray.includes(item)) {
-        purgedArray.push(item);
-      }
-    }
-  }
-
-  return purgedArray;
-}
+export { inputToIntArray, inputToRangeArray };
