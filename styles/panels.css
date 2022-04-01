@@ -24,10 +24,12 @@ textarea {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
+	gap: 0.5em;
 }
 
 .half-panel {
-	width: 49%;
+	width: 1em;
+	flex-grow: 1;
 }
 
 .panel-caption {
@@ -60,6 +62,7 @@ textarea {
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: space-between;
+		gap: 1em;
 	}
 
 	.top-panel > * + * {
@@ -67,7 +70,7 @@ textarea {
 	}
 
 	.top-panel > * {
-		flex-basis: 49%;
+		flex-grow: 1;
 	}
 
 	.option-panel > label:hover {
