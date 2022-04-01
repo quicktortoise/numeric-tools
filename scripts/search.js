@@ -12,7 +12,7 @@ import { inputToIntArray } from './common.js';
     const notFound = [];
 
     for (const target of searchTargets) {
-      if (binarySearch(devicePool, 0, devicePool.length, target)) {
+      if (binarySearch(devicePool, 0, devicePool.length - 1, target)) {
         found.push(target);
       } else {
         notFound.push(target);
