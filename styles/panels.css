@@ -17,6 +17,7 @@ textarea {
 .panel {
 	display: flex;
 	flex-flow: column nowrap;
+	gap: 0.5em;
 }
 
 .grouped-panel {
@@ -35,7 +36,6 @@ textarea {
 
 .action-panel {
 	display: flex;
-	margin-top: 0.5em;
 	flex-flow: row wrap;
 	justify-content: space-between;
 }
