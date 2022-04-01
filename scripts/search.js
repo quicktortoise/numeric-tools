@@ -12,7 +12,8 @@ import { inputToIntArray } from './common.js';
     const notFound = [];
 
     for (const target of searchTargets) {
-      if (binarySearch(devicePool, 0, devicePool.length - 1, target)) {
+      const searchResult = binarySearch(devicePool, target);
+      if (searchResult) {
         found.push(target);
       } else {
         notFound.push(target);

@@ -1,13 +1,16 @@
+const binarySearchR = (array, start, end, target) => {
   if (start > end) return false;
 
   const mid = Math.floor((end + start) / 2);
   const middle = array[mid];
 
   if (target === middle) return true;
-  if (target < middle) return binarySearch(array, start, mid - 1, target);
+  if (target < middle) return binarySearchR(array, start, mid - 1, target);
 
-  return binarySearch(array, mid + 1, end, target);
+  return binarySearchR(array, mid + 1, end, target);
 };
+
+const binarySearch = (array, target) => binarySearchR(array, 0, array.length - 1, target);
 
 const mergeSort = array => {
   if (array.length === 1) return array;
