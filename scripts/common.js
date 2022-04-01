@@ -10,7 +10,7 @@ const inputToIntArray = inputText => {
   }
 
   return [...intSet];
-}
+};
 
 const inputToRangeArray = inputText => {
   const pattern = /^\s*\d+(\s*-\s*\d+)?\s*$/gm;
@@ -26,6 +26,6 @@ const inputToRangeArray = inputText => {
   }
 
   return [...set];
-}
+};
 
 export { inputToIntArray, inputToRangeArray };

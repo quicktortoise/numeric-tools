@@ -1,5 +1,5 @@
-import { mergeSort } from './algos.js';
-import { inputToIntArray, inputToRangeArray } from './common.js';
+import { mergeSort } from "./algos.js";
+import { inputToIntArray, inputToRangeArray } from "./common.js";
 
 (function () {
   const txtFoldedList = document.getElementById("txt-folded-list");
@@ -40,7 +40,7 @@ import { inputToIntArray, inputToRangeArray } from './common.js';
     }
 
     return foldedArray;
-  }
+  };
 
   const unfold = foldedValues => {
     const unfoldedValues = new Set();
@@ -52,7 +52,7 @@ import { inputToIntArray, inputToRangeArray } from './common.js';
     }
 
     return [...unfoldedValues];
-  }
+  };
 
   const expandRange = range => {
     const splitRange = range.split("-");
@@ -68,7 +68,7 @@ import { inputToIntArray, inputToRangeArray } from './common.js';
     }
 
     return expandedRange;
-  }
+  };
 
   // btn-unfold click listener
   document.getElementById("btn-unfold").addEventListener("click", () => {

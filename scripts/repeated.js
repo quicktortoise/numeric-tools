@@ -1,4 +1,4 @@
-import { mergeSortF } from './algos.js';
+import { mergeSortF } from "./algos.js";
 
 (function () {
   const txtDuplicatedList = document.getElementById("txt-duplicates-list");
@@ -27,7 +27,7 @@ import { mergeSortF } from './algos.js';
       dictionary,
       x => x.count,
       (a, b) => a > b);
-  }
+  };
 
   // btn-search click listener
   document.getElementById("btn-filter").addEventListener("click", () => {

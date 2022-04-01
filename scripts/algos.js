@@ -31,11 +31,9 @@ const merge = (arrayA, arrayB) => {
     if (arrayA[indexA] === arrayB[indexB]) {
       arr.push(arrayA[indexA++]);
       arr.push(arrayB[indexB++]);
-    }
-    else if (arrayA[indexA] < arrayB[indexB]) {
+    } else if (arrayA[indexA] < arrayB[indexB]) {
       arr.push(arrayA[indexA++]);
-    }
-    else {
+    } else {
       arr.push(arrayB[indexB++]);
     }
   }
@@ -54,7 +52,7 @@ const mergeSortF = (array, selector, comparator) => {
   const right = mergeSortF(array.slice(mid), selector, comparator);
 
   return mergeF(left, right, selector, comparator);
-}
+};
 
 const mergeF = (arrayA, arrayB, selector, comparator) => {
   const arr = [];
@@ -67,11 +65,9 @@ const mergeF = (arrayA, arrayB, selector, comparator) => {
     if (selectorA === selectorB) {
       arr.push(arrayB[indexB++]);
       arr.push(arrayA[indexA++]);
-    }
-    else if (comparator(selectorA, selectorB)) {
+    } else if (comparator(selectorA, selectorB)) {
       arr.push(arrayA[indexA++]);
-    }
-    else {
+    } else {
       arr.push(arrayB[indexB++]);
     }
   }
@@ -80,6 +76,6 @@ const mergeF = (arrayA, arrayB, selector, comparator) => {
     arrayA.slice(indexA),
     arrayB.slice(indexB)
   );
-}
+};
 
 export { binarySearch, mergeSort, mergeSortF };

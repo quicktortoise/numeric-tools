@@ -2,14 +2,14 @@
   const clearTextArea = textarea => {
     textarea.value = "";
     textarea.focus();
-  }
+  };
 
   // TODO: Use Clipboard API
   const copyTextArea = textarea => {
     textarea.select();
     textarea.focus();
     document.execCommand("copy");
-  }
+  };
 
   // Copiar textarea
   document.getElementsByName("btn-copy").forEach(item => {

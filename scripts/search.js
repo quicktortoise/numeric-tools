@@ -1,5 +1,5 @@
-import { binarySearch, mergeSort } from './algos.js';
-import { inputToIntArray } from './common.js';
+import { binarySearch, mergeSort } from "./algos.js";
+import { inputToIntArray } from "./common.js";
 
 (function () {
   const txtPoolList = document.getElementById("txt-pool-list");
@@ -21,7 +21,7 @@ import { inputToIntArray } from './common.js';
     }
 
     return { found, notFound };
-  }
+  };
 
   // btn-search click listener
   document.getElementById("btn-search").addEventListener("click", () => {
