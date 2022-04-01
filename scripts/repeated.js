@@ -25,6 +25,7 @@ import { mergeSortF } from './algos.js';
     const dictionary = [];
 
     for (const line of lines) {
+      if (line.length === 0) continue;
       const item = dictionary.find(x => x.key === line);
 
       if (item) {
