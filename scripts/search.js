@@ -7,18 +7,6 @@ import { inputToIntArray } from './common.js';
   const txtResultsList = document.getElementById("txt-results-list");
   const txtNoResultsList = document.getElementById("txt-noresults-list");
 
-  // btn-search click listener
-  document.getElementById("btn-search").addEventListener("click", () => {
-    const devicePool = inputToIntArray(txtPoolList.value);
-    const searchTargets = inputToIntArray(txtSearchList.value);
-
-    const findings = search(mergeSort(devicePool), searchTargets);
-    const { found, notFound } = findings;
-
-    txtResultsList.value = found.join("\n");
-    txtNoResultsList.value = notFound.join("\n");
-  });
-
   const search = (devicePool, searchTargets) => {
     const found = [];
     const notFound = [];
@@ -33,4 +21,16 @@ import { inputToIntArray } from './common.js';
 
     return { found, notFound };
   }
+
+  // btn-search click listener
+  document.getElementById("btn-search").addEventListener("click", () => {
+    const devicePool = inputToIntArray(txtPoolList.value);
+    const searchTargets = inputToIntArray(txtSearchList.value);
+
+    const findings = search(mergeSort(devicePool), searchTargets);
+    const { found, notFound } = findings;
+
+    txtResultsList.value = found.join("\n");
+    txtNoResultsList.value = notFound.join("\n");
+  });
 })();

@@ -1,29 +1,9 @@
-import { inputToIntArray, inputToRangeArray } from './common.js';
 import { mergeSort } from './algos.js';
+import { inputToIntArray, inputToRangeArray } from './common.js';
 
 (function () {
   const txtFoldedList = document.getElementById("txt-folded-list");
   const txtUnfoldedList = document.getElementById("txt-unfolded-list");
-
-  // btn-unfold click listener
-  document.getElementById("btn-unfold").addEventListener("click", () => {
-    const rangeArray = inputToRangeArray(txtFoldedList.value);
-
-    let unfoldedValues = unfold(rangeArray);
-    unfoldedValues = mergeSort(unfoldedValues);
-
-    txtUnfoldedList.value = unfoldedValues.join("\n");
-  });
-
-  // btn-fold click listener
-  document.getElementById("btn-fold").addEventListener("click", () => {
-    const dontContractPair = document.getElementById("chk-contract-two-value").checked;
-
-    const valuesToFold = inputToIntArray(txtUnfoldedList.value);
-    const ranges = fold(valuesToFold, dontContractPair);
-
-    txtFoldedList.value = ranges.join("\n");
-  });
 
   const fold = (values, dontContractTwo) => {
     const foldedArray = [];
@@ -89,4 +69,24 @@ import { mergeSort } from './algos.js';
 
     return expandedRange;
   }
+
+  // btn-unfold click listener
+  document.getElementById("btn-unfold").addEventListener("click", () => {
+    const rangeArray = inputToRangeArray(txtFoldedList.value);
+
+    let unfoldedValues = unfold(rangeArray);
+    unfoldedValues = mergeSort(unfoldedValues);
+
+    txtUnfoldedList.value = unfoldedValues.join("\n");
+  });
+
+  // btn-fold click listener
+  document.getElementById("btn-fold").addEventListener("click", () => {
+    const dontContractPair = document.getElementById("chk-contract-two-value").checked;
+
+    const valuesToFold = inputToIntArray(txtUnfoldedList.value);
+    const ranges = fold(valuesToFold, dontContractPair);
+
+    txtFoldedList.value = ranges.join("\n");
+  });
 })();
