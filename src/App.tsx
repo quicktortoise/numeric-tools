@@ -16,7 +16,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-bg dark:bg-bg-dark font-sans">
       <Header links={navLinks} />
-      <main className="flex-1 w-full max-w-[975px] mx-auto px-4 py-6">
+      <main className="flex-1 w-full max-w-5xl mx-auto px-4 py-8">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/ranges" element={<Ranges />} />
@@ -24,18 +24,16 @@ export default function App() {
           <Route path="/repeated" element={<Repeated />} />
         </Routes>
       </main>
-      <footer className="w-full bg-primary dark:bg-primary-dark text-fg-contrast text-center py-3 mt-4">
-        <p className="m-0">
-          Made with ♥ by{' '}
-          <a
-            href="https://github.com/mdanieltg/"
-            target="_blank"
-            rel="noreferrer"
-            className="text-secondary hover:underline"
-          >
-            mdanieltg
-          </a>
-        </p>
+      <footer className="py-5 text-center text-sm text-slate-400 dark:text-slate-500 border-t border-slate-200 dark:border-slate-800">
+        Made with ♥ by{' '}
+        <a
+          href="https://github.com/mdanieltg/"
+          target="_blank"
+          rel="noreferrer"
+          className="text-primary dark:text-secondary hover:underline"
+        >
+          mdanieltg
+        </a>
       </footer>
     </div>
   )

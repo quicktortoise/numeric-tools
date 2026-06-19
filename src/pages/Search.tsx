@@ -35,63 +35,66 @@ export default function Search() {
     setNotFoundText(notFound.join('\n'))
   }
 
-  const panelClass = 'flex-1'
-
   return (
-    <div className="flex flex-col md:flex-row gap-4">
-      <div className="flex-1 flex flex-col gap-4">
-        <div className="flex flex-row gap-2">
-          <div className={panelClass}>
-            <TextareaPanel
-              id="txt-search-list"
-              label="What to search:"
-              value={searchListText}
-              onChange={setSearchListText}
-              onClear={() => setSearchListText('')}
-            />
-          </div>
-          <div className={panelClass}>
-            <TextareaPanel
-              id="txt-pool-list"
-              label="Where to search:"
-              value={poolListText}
-              onChange={setPoolListText}
-              onClear={() => setPoolListText('')}
-            />
-          </div>
-        </div>
-        <button
-          onClick={handleSearch}
-          className="
-            w-full px-3 py-2 rounded border border-secondary
-            bg-secondary text-fg-contrast font-semibold
-            active:bg-fg-contrast active:text-secondary
-            dark:active:bg-bg-dark dark:active:text-fg-contrast
-            cursor-pointer
-          "
-        >
-          Search
-        </button>
-      </div>
+    <div className="flex flex-col gap-6">
+      <h2 className="font-heading font-bold text-2xl text-primary dark:text-fg-contrast">Search</h2>
 
-      <div className="flex-1 flex flex-row gap-2">
-        <div className={panelClass}>
-          <TextareaPanel
-            id="txt-results-list"
-            label="Found:"
-            value={foundText}
-            readOnly
-            onClear={() => setFoundText('')}
-          />
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* Inputs */}
+        <div className="flex-1 flex flex-col gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex-1">
+              <TextareaPanel
+                id="txt-search-list"
+                label="What to search"
+                value={searchListText}
+                onChange={setSearchListText}
+                onClear={() => setSearchListText('')}
+              />
+            </div>
+            <div className="flex-1">
+              <TextareaPanel
+                id="txt-pool-list"
+                label="Where to search"
+                value={poolListText}
+                onChange={setPoolListText}
+                onClear={() => setPoolListText('')}
+              />
+            </div>
+          </div>
+
+          <button
+            onClick={handleSearch}
+            className="
+              w-full px-4 py-2.5 rounded-xl font-semibold text-sm text-fg-contrast
+              bg-secondary hover:bg-secondary-dark active:scale-[0.98]
+              shadow-sm hover:shadow-md transition-all duration-150 cursor-pointer
+            "
+          >
+            Search
+          </button>
         </div>
-        <div className={panelClass}>
-          <TextareaPanel
-            id="txt-noresults-list"
-            label="Not found:"
-            value={notFoundText}
-            readOnly
-            onClear={() => setNotFoundText('')}
-          />
+
+        {/* Outputs */}
+        <div className="flex-1 flex flex-col sm:flex-row gap-4">
+          <div className="flex-1">
+            <TextareaPanel
+              id="txt-results-list"
+              label="Found"
+              value={foundText}
+              readOnly
+              onClear={() => setFoundText('')}
+            />
+          </div>
+          <div className="flex-1">
+            <TextareaPanel
+              id="txt-noresults-list"
+              label="Not found"
+              value={notFoundText}
+              readOnly
+              onClear={() => setNotFoundText('')}
+            />
+          </div>
         </div>
       </div>
     </div>

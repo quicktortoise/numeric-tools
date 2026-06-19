@@ -58,10 +58,10 @@ function fold(values: number[], dontContractTwo: boolean): string[] {
   return foldedArray
 }
 
-const primaryBtnClass =
-  'w-full px-3 py-2 rounded border border-secondary bg-secondary text-fg-contrast font-semibold ' +
-  'active:bg-fg-contrast active:text-secondary dark:active:bg-bg-dark dark:active:text-fg-contrast ' +
-  'cursor-pointer'
+const actionBtnClass =
+  'w-full px-4 py-2.5 rounded-xl font-semibold text-sm text-fg-contrast ' +
+  'bg-secondary hover:bg-secondary-dark active:scale-[0.98] ' +
+  'shadow-sm hover:shadow-md transition-all duration-150 cursor-pointer'
 
 export default function Ranges() {
   const [unfoldedText, setUnfoldedText] = useState('')
@@ -70,8 +70,7 @@ export default function Ranges() {
 
   const handleFold = () => {
     const valuesToFold = inputToIntArray(unfoldedText)
-    const ranges = fold(valuesToFold, dontContractTwo)
-    setFoldedText(ranges.join('\n'))
+    setFoldedText(fold(valuesToFold, dontContractTwo).join('\n'))
   }
 
   const handleUnfold = () => {
@@ -82,41 +81,44 @@ export default function Ranges() {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <label className="flex items-center gap-2 cursor-pointer select-none text-fg dark:text-fg-contrast">
+    <div className="flex flex-col gap-6">
+      <h2 className="font-heading font-bold text-2xl text-primary dark:text-fg-contrast">Ranges</h2>
+
+      <label className="inline-flex items-center gap-2.5 cursor-pointer select-none w-fit
+                        text-sm text-slate-600 dark:text-slate-300">
         <input
           type="checkbox"
           checked={dontContractTwo}
           onChange={(e) => setDontContractTwo(e.target.checked)}
-          className="w-4 h-4"
+          className="w-4 h-4 rounded accent-primary cursor-pointer"
         />
-        <span>Do not contract two-value ranges.</span>
+        Do not contract two-value ranges
       </label>
 
       <div className="flex flex-col md:flex-row gap-4">
-        <div className="flex-1 flex flex-col gap-2">
+        <div className="flex-1 flex flex-col gap-3">
           <TextareaPanel
             id="txt-unfolded-list"
-            label="Unfolded:"
+            label="Unfolded"
             value={unfoldedText}
             onChange={setUnfoldedText}
             onClear={() => setUnfoldedText('')}
           />
-          <button onClick={handleFold} className={primaryBtnClass}>
-            Fold
+          <button onClick={handleFold} className={actionBtnClass}>
+            Fold →
           </button>
         </div>
 
-        <div className="flex-1 flex flex-col gap-2">
+        <div className="flex-1 flex flex-col gap-3">
           <TextareaPanel
             id="txt-folded-list"
-            label="Folded:"
+            label="Folded"
             value={foldedText}
             onChange={setFoldedText}
             onClear={() => setFoldedText('')}
           />
-          <button onClick={handleUnfold} className={primaryBtnClass}>
-            Unfold
+          <button onClick={handleUnfold} className={actionBtnClass}>
+            ← Unfold
           </button>
         </div>
       </div>

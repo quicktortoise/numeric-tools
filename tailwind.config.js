@@ -11,8 +11,8 @@ export default {
         'secondary-dark': '#eb7b2d',
         fg: '#262626',
         'fg-contrast': '#eeeeee',
-        bg: '#e6e6e6',
-        'bg-dark': '#1a1a2e',
+        bg: '#f1f5f9',
+        'bg-dark': '#0f172a',
       },
       fontFamily: {
         sans: ['Quicksand', 'sans-serif'],
