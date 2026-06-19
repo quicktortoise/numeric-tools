@@ -1,0 +1,42 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: vps
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to private registry
+        run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login localhost:5000 -u "${{ secrets.REGISTRY_USER }}" --password-stdin
+
+      - name: Build image
+        run: |
+          docker build \
+            --file ci/Dockerfile \
+            -t localhost:5000/numeric-tools:latest \
+            -t localhost:5000/numeric-tools:${{ github.sha }} \
+            .
+
+      - name: Push to registry
+        run: |
+          docker push localhost:5000/numeric-tools:latest
+          docker push localhost:5000/numeric-tools:${{ github.sha }}
+
+      - name: Copy Docker Compose production file
+        run: cp ci/docker-compose.prod.yml /opt/apps/numeric-tools/docker-compose.yml
+
+      - name: Deploy
+        run: |
+          cd /opt/apps/numeric-tools
+          docker compose -f docker-compose.yml pull
+          docker compose -f docker-compose.yml up -d
+
+      - name: Clean up old images
+        run: docker image prune -f
