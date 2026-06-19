@@ -1,0 +1,15 @@
+services:
+  numeric-tools:
+    image: localhost:5000/numeric-tools:latest
+    container_name: numeric-tools
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8081:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
+
+# vim: set ts=2 sts=2 sw=2 et:

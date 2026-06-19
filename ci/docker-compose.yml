@@ -1,0 +1,8 @@
+name: numeric-tools
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: ci/Dockerfile
+    ports:
+      - "80:80"
